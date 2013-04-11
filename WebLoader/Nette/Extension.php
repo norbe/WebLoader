@@ -77,15 +77,9 @@ class Extension extends \Nette\Config\CompilerExtension
 			// finder support
 			if (is_array($file) && isset($file['files']) && (isset($file['in']) || isset($file['from']))) {
 				$finder = \Nette\Utils\Finder::findFiles($file['files']);
-
-				if (isset($file['exclude'])) {
-					$finder->exclude($file['exclude']);
-				}
-
-				if (isset($file['in'])) {
-					$finder->in($file['in']);
-				} else {
-					$finder->from($file['from']);
+				unset($file['files']);
+				foreach($file as $method => $params) {
+					call_user_func_array(array($finder, $method), array($params));
 				}
 
 				foreach ($finder as $foundFile) {
