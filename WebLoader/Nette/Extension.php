@@ -5,7 +5,7 @@ namespace WebLoader\Nette;
 /**
  * @author Jan Marek
  */
-class Extension extends \Nette\Config\CompilerExtension
+class Extension extends \Nette\DI\CompilerExtension
 {
 
 	const EXTENSION_NAME = 'webloader';
